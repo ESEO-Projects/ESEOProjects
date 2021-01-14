@@ -4,6 +4,7 @@
 
 Il faut commencer par cloner localement le dépôt : `git clone https://github.com/ESEOProjects/ESEOProjects.git && cd ESEOProjects`
 Ensuite, avec Composer, il faut installer les dépendances : `composer install --dev`
+S'il y a une erreur "Fatal Error: composer.lock was created for PHP version 7.4 or higher but the current PHP version is 7.3.5." : `composer update --lock`
 
 Après s'être assuré que votre serveur MySQL local fonctionne, il faut éditer le fichier .env.local en modifiant la ligne DATABASE_URL avec vos données locales.
 Ces données vous sont propres et ne doivent pas être push sur le dépôt.
