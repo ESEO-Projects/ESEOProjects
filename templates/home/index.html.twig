@@ -12,7 +12,20 @@
     <h1>Hello! ✅</h1>
     {{ dump(projects) }}
     {% for project in projects %}
-        {{ currentDate|date('m/d/Y') }}
+        <div class="card" style="width: 18rem;margin:10px 0;">
+            <img class="card-img-top" src="" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ project.name }}</h5>
+                <p class="card-text">{{ project.description }}</p>
+                {# regex pour détecter la structure de l'url #}
+                {% if project.githubUrl == "" %}
+                    <a href="#" style="pointer-events:none;text-decoration:none;color:gray;">Github Link</a>
+                {% else %}
+                    <a href={{ project.githubUrl }} target="_blank">Github Link</a>
+                {% endif %}
+            </div>
+        </div>
+        {# {{ currentDate|date('m/d/Y') }} #}
     {% endfor %}
 
     This friendly message is coming from:
