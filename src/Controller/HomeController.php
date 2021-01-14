@@ -16,6 +16,7 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig', [
             'projects' => $projectRepository->findAll(),
+            'currentDate' => new \DateTime('now')
         ]);
     }
 }

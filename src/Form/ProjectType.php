@@ -16,9 +16,6 @@ class ProjectType extends AbstractType
             ->add('description')
             ->add('githubUrl')
             ->add('cost')
-            ->add('views')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('users')
             ->add('promotion')
         ;
