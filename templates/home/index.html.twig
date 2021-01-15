@@ -27,6 +27,14 @@
     .actions .follow-btn button.active:hover { background-color:#efb10a;transform:scale(1.1); }
     .actions .follow-btn button.active:active { background-color:#e8a200;transform:scale(1); }
     .desc { text-align:justify;padding:0 2rem 2.5rem;order:100; }
+    .noselect {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
 </style>
 
 <div class="example-wrapper">
@@ -34,9 +42,9 @@
     {{ dump(projects) }}
     <div id="global_container">
         {% for project in projects %}
-            <div class="card">
+            <div class="card noselect">
                 <div class="banner">
-                <img src="{{ asset('elec.png') }}" />
+                <img style="pointer-events:none;" src="{{ asset('elec.png') }}" />
                 {# <img src="{{ asset('uploads/thumbnails/' ~ project.thumbnail) }}" /> #}
                 </div>
                 <h2 class="name">{{ project.name }}</h2>
