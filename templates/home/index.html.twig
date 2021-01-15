@@ -2,77 +2,78 @@
 
 {% block title %}Hello HomeController!{% endblock %}
 
-{% block body %}
+{% block stylesheets %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    @import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
-    body { font-size:16px;color:#404040;font-family:Montserrat;background-position:center;background-attachment:fixed;margin:0;padding:2rem 0;display:grid;place-items:center;box-sizing:border-box; }
-    .global_container { display:grid;grid-template-comns:repeat(3, 1fr);grid-auto-rows:auto;grid-gap:1rem; }
-    .card { margin:10px 0;background-color:white;max-width:360px;display:flex;flex-direction:column;overflow:hidden;border-radius:2rem;box-shadow:0px 1rem 1.5rem rgba(black, 0.5); }
-    .card .banner { background-position:center;background-repeat:no-repeat;background-size:cover;height:11rem;align-items:flex-end;justify-content:center;box-sizing:border-box; }
-    .card .banner img { height:100%;width:100%; }
-    h2.name { text-align:center;padding:0 2rem 0.5rem;margin:0;padding:20px;}
-    .title { color:lighten(#404040, 50%);font-size:0.85rem;text-align:center;padding:0 2rem 1.2rem; }
-    .actions { padding:0 2rem 1.2rem;display:flex;flex-direction:column;order:99; }
-    .actions .follow-info { padding:0 0 1rem;display:flex; }
-    .actions .follow-info h2 { text-align:center;width:50%;margin:0;box-sizing:border-box; }
-    .actions .follow-info h2 a { text-decoration:none;padding:0.8rem;display:flex;flex-direction:column;border-radius:0.8rem;transition:background-color 100ms ease-in-out; }
-    .actions .follow-info h2 a span { color:#1c9eff;font-weight:bold;transform-origin:bottom;transform:scaleY(1.3);transition:color 100ms ease-in-out; }
-    .actions .follow-info h2 a small { color:#afafaf;font-size:0.85rem;font-weight:normal; }
-    .actions .follow-info h2 a:hover { background-color:#f2f2f2; }
-    .actions .follow-info h2 a:hover span { color:#007ad6; }
-    .actions .follow-btn button { color:inherit;font:inherit;font-weight:bold;background-color:#ffd01a;width:100%;border:none;padding:1rem;outline:none;box-sizing:border-box;border-radius:1.5rem/50%;transition:background-color 100ms ease-in-out, transform 200ms cubic-bezier(0.18, 0.89, 0.32, 1.28) }
-    .actions .follow-btn button.active a { text-decoration:none;color:#000; }
-    .actions .follow-btn button.active:hover { background-color:#efb10a;transform:scale(1.1); }
-    .actions .follow-btn button.active:active { background-color:#e8a200;transform:scale(1); }
-    .desc { text-align:justify;padding:0 2rem 2.5rem;order:100; }
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
+body { font-size:16px;color:#404040;font-family:Montserrat;background-position:center;background-attachment:fixed;margin:0;padding:2rem 0;display:grid;place-items:center;box-sizing:border-box; }
+.global_container { display:grid;grid-template-comns:repeat(3, 1fr);grid-auto-rows:auto;grid-gap:1rem; }
+.card { margin:10px 0;background-color:white;max-width:360px;display:flex;flex-direction:column;overflow:hidden;border-radius:2rem;box-shadow:0px 1rem 1.5rem rgba(black, 0.5); }
+.card .banner { background-position:center;background-repeat:no-repeat;background-size:cover;height:11rem;align-items:flex-end;justify-content:center;box-sizing:border-box; }
+.card .banner img { height:100%;width:100%; }
+h2.name { text-align:center;padding:0 2rem 0.5rem;margin:0;padding:20px;}
+.title { color:lighten(#404040, 50%);font-size:0.85rem;text-align:center;padding:0 2rem 1.2rem; }
+.actions { padding:0 2rem 1.2rem;display:flex;flex-direction:column;order:99; }
+.actions .follow-info { padding:0 0 1rem;display:flex; }
+.actions .follow-info h2 { text-align:center;width:50%;margin:0;box-sizing:border-box; }
+.actions .follow-info h2 a { text-decoration:none;padding:0.8rem;display:flex;flex-direction:column;border-radius:0.8rem;transition:background-color 100ms ease-in-out; }
+.actions .follow-info h2 a span { color:#1c9eff;font-weight:bold;transform-origin:bottom;transform:scaleY(1.3);transition:color 100ms ease-in-out; }
+.actions .follow-info h2 a small { color:#afafaf;font-size:0.85rem;font-weight:normal; }
+.actions .follow-info h2 a:hover { background-color:#f2f2f2; }
+.actions .follow-info h2 a:hover span { color:#007ad6; }
+.actions .follow-btn button { color:inherit;font:inherit;font-weight:bold;background-color:#ffd01a;width:100%;border:none;padding:1rem;outline:none;box-sizing:border-box;border-radius:1.5rem/50%;transition:background-color 100ms ease-in-out, transform 200ms cubic-bezier(0.18, 0.89, 0.32, 1.28) }
+.actions .follow-btn button.active a { text-decoration:none;color:#000; }
+.actions .follow-btn button.active:hover { background-color:#efb10a;transform:scale(1.1); }
+.actions .follow-btn button.active:active { background-color:#e8a200;transform:scale(1); }
+.desc { text-align:justify;padding:0 2rem 2.5rem;order:100; }
 </style>
+{% endblock %}
 
-<div class="example-wrapper">
-    <h1>Hello! ✅</h1>
-    {{ dump(projects) }}
-    <div id="global_container">
-        {% for project in projects %}
-            <div class="card">
-                <div class="banner">
-                <img src="{{ asset('elec.png') }}" />
-                {# <img src="{{ asset('uploads/thumbnails/' ~ project.thumbnail) }}" /> #}
-                </div>
-                <h2 class="name">{{ project.name }}</h2>
-                <div class="title">{{ project.users|users }}</div>
-                <div class="actions">
-                    <div class="follow-info">
-                        <h2>
-                            <a href="#">
-                                <span>{{ project.cost }}€</span>
-                                <small>Cost</i></small>
-                            </a>
-                        </h2>
-                        <h2>
-                            <a href="#">
-                                <span>{{ project.views }}&nbsp;<i class="fas fa-eye"></i></span>
-                                <small>Views</small>
-                            </a>
-                        </h2>
-                    </div>
-                    <div class="follow-btn">
-                        {# put project route instead of githubUrl #}
-                        <button class="active"><a href={{ project.githubUrl }} target="_blank">Page du projet</a></button>
-                    </div>
-                </div>
-                <div class="desc">
-                    {{ project.description }}
-                </div>
-            </div>
-        {% endfor %}
+{% block body %}
+<section class="text-white mt-3">
+  <h1 class="display">PROJETS PEDAGOGIQUES</h1>
+  <p class="lead">Etudiants de l'ESEO</p>
+</section>
+<div id="global_container">
+  <div class="row d-flex align-items-stretch">
+    {% for project in projects %}
+    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+      <div class="card">
+        <div class="banner">
+          <img src="{{ asset('elec.png') }}" />
+          {# <img src="{{ asset('uploads/thumbnails/' ~ project.thumbnail) }}" /> #}
+        </div>
+        <h2 class="name">{{ project.name }}</h2>
+        <div class="title">{{ project.users|users }}</div>
+        <div class="actions">
+          <div class="follow-info">
+            <h2>
+              <a href="#">
+                <span>{{ project.cost }}€</span>
+                <small>Cost</i></small>
+              </a>
+            </h2>
+            <h2>
+              <a href="#">
+                <span>{{ project.views }}&nbsp;<i class="fas fa-eye"></i></span>
+                <small>Views</small>
+              </a>
+            </h2>
+          </div>
+          <div class="follow-btn">
+            {# put project route instead of githubUrl #}
+            <button class="active"><a href="{{ path('project_show', {id: project.id}) }}" target="_blank">Page du projet</a></button>
+          </div>
+        </div>
+        <div class="desc">
+          {{ project.description }}
+        </div>
+      </div>
     </div>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/halope/Dev/ESEOProjects/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/halope/Dev/ESEOProjects/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
+    {% endfor %}
+  </div>
 </div>
+
+{% endblock %}
+{% block javascripts %}
 <script src="https://kit.fontawesome.com/ebc72dbf59.js" crossorigin="anonymous"></script>
 {% endblock %}
