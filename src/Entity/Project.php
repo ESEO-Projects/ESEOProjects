@@ -69,6 +69,11 @@ class Project
     private $promotion;
 
     /**
+     * @ORM\Column(type="string", length=120)
+     */
+    private $short_description;
+
+    /**
      * @ORM\PrePersist
      * @ORM\PreUpdate
      */
@@ -213,5 +218,17 @@ class Project
     public function __toString(): string
     {
         return (string) $this->getName();
+    }
+
+    public function getShortDescription(): ?string
+    {
+        return $this->short_description;
+    }
+
+    public function setShortDescription(string $short_description): self
+    {
+        $this->short_description = $short_description;
+
+        return $this;
     }
 }
