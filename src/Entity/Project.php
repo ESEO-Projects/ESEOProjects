@@ -69,6 +69,11 @@ class Project
     private $promotion;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $thumbnail;
+
+    /**
      * @ORM\PrePersist
      * @ORM\PreUpdate
      */
@@ -213,5 +218,17 @@ class Project
     public function __toString(): string
     {
         return (string) $this->getName();
+    }
+
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?string $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
     }
 }

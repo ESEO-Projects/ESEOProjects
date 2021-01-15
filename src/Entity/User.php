@@ -164,7 +164,7 @@ class User implements UserInterface
 
     public function getFirstname(): ?string
     {
-        return $this->firstname;
+        return ucfirst($this->firstname);
     }
 
     public function setFirstname(string $firstname): self
@@ -176,7 +176,7 @@ class User implements UserInterface
 
     public function getLastname(): ?string
     {
-        return $this->lastname;
+        return mb_strtoupper($this->lastname, 'UTF-8');
     }
 
     public function setLastname(string $lastname): self

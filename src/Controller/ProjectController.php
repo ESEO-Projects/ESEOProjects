@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Form\ProjectType;
+use App\Service\FileUploader;
 use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 /**
  * @Route("/project")
@@ -32,13 +34,18 @@ class ProjectController extends AbstractController
      * @Route("/new", name="project_new", methods={"GET","POST"})
      * @IsGranted("ROLE_STUDENT")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $project = new Project();
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $thumbnailFile = $form->get('thumbnail_file')->getData();
+            if($thumbnailFile) {
+              $thumbnail = $fileUploader->upload($thumbnailFile);
+              $project->setThumbnail($thumbnail);
+            }
             $project->setViews(0);
             $project->addUser($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
@@ -59,6 +66,9 @@ class ProjectController extends AbstractController
      */
     public function show(Project $project): Response
     {
+        // A chaque vue d'un projet, on incrémente de 1 dans la base de données le nombre de vues:
+        $project->setViews($project->getViews()+1);
+        $this->getDoctrine()->getManager()->flush(); // On update les données.
         return $this->render('project/show.html.twig', [
             'project' => $project,
         ]);

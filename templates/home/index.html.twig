@@ -57,7 +57,7 @@
             <h2 class="name">{{ project.name }}</h2>
             {# Convert collection to string #}
             {# <div class="title">{{ project.users }}</div> #}
-            <div class="title">HALOPE Alexandre - DUPERRAY Simon</div>
+            <div class="title">{{ project.users|users }}</div>
             <div class="actions">
                 <div class="follow-info">
                     <h2>
@@ -73,7 +73,7 @@
                         </a>
                     </h2>
                 </div>
-                <div class="follow-btn">
+                <div class="follow-btn"> 
                     {# regex expression to detect repo url pattern #}
                     {% if project.githubUrl == "" %}
                         <button><a href="#" class="disabled_link">Github</a></button>

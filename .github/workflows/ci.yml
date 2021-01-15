@@ -9,16 +9,14 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: false
-          MYSQL_ROOT_PASSWORD: symfony
-          MYSQL_DATABASE: symfony
+          MYSQL_ROOT_PASSWORD: root
         ports:
           - 3306/tcp
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['7.4']
+        php-versions: ['7.3']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -55,3 +53,5 @@ jobs:
           DATABASE_URL: mysql://root:symfony@localhost:${{ job.services.mysql.ports['3306'] }}/symfony
       - name: Run Tests
         run: php bin/phpunit --coverage-text
+        env:
+          DATABASE_URL: mysql://root:root@localhost:${{ job.services.mysql.ports['3306'] }}/test
