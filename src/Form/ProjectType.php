@@ -16,6 +16,7 @@ class ProjectType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
+            ->add('short_description')
             ->add('githubUrl')
             ->add('cost')
             ->add('users')

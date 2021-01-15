@@ -16,10 +16,17 @@ class DashboardController extends AbstractController
      * @Route("/dashboard", name="dashboard")
      * @return vue Liste des projets de l'utilisateur courant.
      */
-    public function index(): Response
+    public function index(ProjectRepository $projectRepository): Response
     {
-        return $this->render('dashboard/index.html.twig', [
-            'projects' => $this->getUser()->getProjects(),
-        ]);
+        if($this->isGranted('ROLE_ADMIN')){
+            return $this->render('dashboard/index.html.twig', [
+              'projects' => $projectRepository->getProjects(),
+            ]);
+        }
+        else{
+            return $this->render('dashboard/index.html.twig', [
+              'projects' => $this->getUser()->getProjects(),
+            ]);
+        }
     }
 }

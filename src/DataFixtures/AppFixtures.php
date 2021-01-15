@@ -76,6 +76,7 @@ class AppFixtures extends Fixture
         $project1 = new Project();
         $project1->setName("Projet Arduino LEDs qui clignotent quand on baille");
         $project1->setDescription("Grâce à mon détecteur de baillement, je pense enfin à mettre ma main devant ma bouche.");
+        $project1->setShortDescription("Description courte du projet 1");
         $project1->setCost(123.45);
         $project1->setViews(1055);
         $project1->addUser($student1);
@@ -87,6 +88,7 @@ class AppFixtures extends Fixture
         $project2 = new Project();
         $project2->setName("L'arnaque du siècle achetée sur Internet la veille des JPO");
         $project2->setDescription("J'étais vraiment très ambitieux au départ, mais ma procrastination m'a rattrapé à vitesse grand-V.\n Du coup j'ai utilisé mon abonnement Amazon Prime et fait acheminer jusqu'au pas de ma porte une superbe voiture télécommandée. Passé la phase de montage et le copier/coller du code, c'était nickel. \n J'ai pu continuer ma série Netflix.");
+        $project2->setShortDescription("Projet 2 en quelques mots.");
         $project2->setCost(55.67);
         $project2->setViews(3567);
         $project2->addUser($student3);
