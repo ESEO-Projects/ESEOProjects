@@ -12,14 +12,7 @@
     .card { margin:10px 0;background-color:white;max-width:360px;display:flex;flex-direction:column;overflow:hidden;border-radius:2rem;box-shadow:0px 1rem 1.5rem rgba(black, 0.5); }
     .card .banner { background-position:center;background-repeat:no-repeat;background-size:cover;height:11rem;align-items:flex-end;justify-content:center;box-sizing:border-box; }
     .card .banner img { height:100%;width:100%; }
-    .menu { width:100%;height:5.5rem;padding:1rem;display:flex;align-items:flex-start;justify-content:flex-end;position:relative;box-sizing:border-box; }
-    .menu .opener { width:2.5rem;height:2.5rem;position:relative;border-radius:50%;transition:background-color 10ms ease-in-out; }
-    .menu .opener:hover { cursor:pointer;color:#000; }
-    .menu .opener span { background-color:#404040;width:0.4rem;height:0.4rem;position:absolute;top:0;left: "calc(50%-%s)" % (0.4rem/2);border-radius:50%; }
-    .menu .opener span:nth-child(1) { top: 0.45rem; }
-    .menu .opener span:nth-child(2) { top: 1.05rem; }
-    .menu .opener span:nth-child(3) { top: 1.65rem; }
-    h2.name { text-align:center;padding:0 2rem 0.5rem;margin:0; }
+    h2.name { text-align:center;padding:0 2rem 0.5rem;margin:0;padding:20px;}
     .title { color:lighten(#404040, 50%);font-size:0.85rem;text-align:center;padding:0 2rem 1.2rem; }
     .actions { padding:0 2rem 1.2rem;display:flex;flex-direction:column;order:99; }
     .actions .follow-info { padding:0 0 1rem;display:flex; }
@@ -43,41 +36,29 @@
         {% for project in projects %}
             <div class="card">
                 <div class="banner">
-                    <img src="{{ asset('uploads/thumbnails/' ~ project.thumbnail) }}" />
-                </div>
-                <div class="menu">
-                    <div class="opener">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
+                <img src="{{ asset('elec.png') }}" />
+                {# <img src="{{ asset('uploads/thumbnails/' ~ project.thumbnail) }}" /> #}
                 </div>
                 <h2 class="name">{{ project.name }}</h2>
-                {# Convert collection to string #}
-                {# <div class="title">{{ project.users }}</div> #}
                 <div class="title">{{ project.users|users }}</div>
                 <div class="actions">
                     <div class="follow-info">
                         <h2>
                             <a href="#">
                                 <span>{{ project.cost }}€</span>
-                                <small>Cost</small>
+                                <small>Cost</i></small>
                             </a>
                         </h2>
                         <h2>
                             <a href="#">
-                                <span>{{ project.views }}</span>
+                                <span>{{ project.views }}&nbsp;<i class="fas fa-eye"></i></span>
                                 <small>Views</small>
                             </a>
                         </h2>
                     </div>
                     <div class="follow-btn">
-                        {# regex expression to detect repo url pattern #}
-                        {% if project.githubUrl == "" %}
-                            <button><a href="#" class="disabled_link">Github</a></button>
-                        {% else %}
-                            <button class="active"><a href={{ project.githubUrl }} target="_blank">Github</a></button>
-                        {% endif %}
+                        {# put project route instead of githubUrl #}
+                        <button class="active"><a href={{ project.githubUrl }} target="_blank">Page du projet</a></button>
                     </div>
                 </div>
                 <div class="desc">
@@ -93,4 +74,5 @@
         <li>Your template at <code><a href="{{ '/Users/halope/Dev/ESEOProjects/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
     </ul>
 </div>
+<script src="https://kit.fontawesome.com/ebc72dbf59.js" crossorigin="anonymous"></script>
 {% endblock %}
