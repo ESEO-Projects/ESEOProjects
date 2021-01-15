@@ -1,5 +1,7 @@
 <?php
 
+// short description for card and a bigger one for the page
+
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
