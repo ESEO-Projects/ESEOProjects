@@ -43,7 +43,7 @@
         {% for project in projects %}
             <div class="card">
                 <div class="banner">
-                    <img src="{{ asset('images/elec.png') }}" />
+                    <img src="{{ asset('uploads/thumbnails/' ~ project.thumbnail) }}" />
                 </div>
                 <div class="menu">
                     <div class="opener">
@@ -71,7 +71,7 @@
                             </a>
                         </h2>
                     </div>
-                    <div class="follow-btn"> 
+                    <div class="follow-btn">
                         {# regex expression to detect repo url pattern #}
                         {% if project.githubUrl == "" %}
                             <button><a href="#" class="disabled_link">Github</a></button>

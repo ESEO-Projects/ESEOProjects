@@ -74,6 +74,11 @@ class Project
     private $short_description;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $thumbnail;
+
+    /**
      * @ORM\PrePersist
      * @ORM\PreUpdate
      */
@@ -228,6 +233,18 @@ class Project
     public function setShortDescription(string $short_description): self
     {
         $this->short_description = $short_description;
+
+        return $this;
+    }
+
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?string $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
 
         return $this;
     }
