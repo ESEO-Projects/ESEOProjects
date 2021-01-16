@@ -10,7 +10,7 @@
 
   {% endblock %}
 </head>
-<body>
+<body style="height:100%">
   <div class="container-fluid">
     <header class="app-header">
       <div class="row align-middle justify-content-md-center align-items-center">
@@ -35,7 +35,13 @@
       {% endblock %}
     </div>
   </main>
-  <footer>
+  <footer class="text-center">
+    <p>
+      <a href="{{ path('app_login') }}">Espace étudiants</a>
+    </p>
+    <p>
+      Made with ❤️ by <a href="https://www.linkedin.com/in/simon-duperray/">Simon Duperray</a> et <a href="https://www.linkedin.com/in/alexandre-halope/">Alexandre Halopé</a>.
+    </p>
   </footer>
   {% block javascripts %}
   <script src="https://kit.fontawesome.com/f421775103.js" crossorigin="anonymous"></script>

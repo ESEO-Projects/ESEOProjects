@@ -21,7 +21,7 @@ class DashboardController extends AbstractController
     {
         if($this->isGranted('ROLE_ADMIN')){
             return $this->render('dashboard/index.html.twig', [
-              'projects' => $projectRepository->getProjects(),
+              'projects' => $projectRepository->findAll(),
             ]);
         }
         else{
