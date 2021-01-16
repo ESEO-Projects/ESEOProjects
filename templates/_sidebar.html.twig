@@ -1,0 +1,51 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="{{ path('dashboard') }}" class="brand-link">
+    <img src="{{ asset('logo-eseo-couleur-v2.png') }}" alt="Logo ESEO" class="brand-image" style="opacity: .8">
+    <div class="brand-text">Projets</div>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="info">
+        <p class="text-white">Bonjour, {{app.user.firstName ~ ' ' ~ app.user.lastName}}</p>
+      </div>
+    </div>
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
+        <li class="nav-item">
+          <a href="{{ path('project_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-tasks"></i>
+            <p>Mes projets</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ path('project_new') }}" class="nav-link">
+            <i class="nav-icon fas fa-lightbulb"></i>
+            <p>Ajouter un projet</p>
+          </a>
+        </li>
+      </ul>
+      {% if is_granted('ROLE_ADMIN') %}
+      <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
+        <li class="nav-item">
+          <a href="{{ path('promotion_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-graduation-cap"></i>
+            <p>Promotions</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ path('user_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-user-graduate"></i>
+            <p>Etudiants</p>
+          </a>
+        </li>
+      </ul>
+      {% endif %}
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

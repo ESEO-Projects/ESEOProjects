@@ -6,16 +6,25 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
-            ->add('roles')
-            ->add('password')
-            ->add('projects')
+            ->add('email', EmailType::class, [
+              'label' => 'Email'
+            ])
+            ->add('roles', ChoiceType::class, [
+              'label' => 'Rôle(s)',
+              'multiple' => true,
+              'choices' => [
+                'Administrateur' => 'ROLE_ADMIN',
+                'Etudiant' => 'ROLE_STUDENT'
+              ],
+            ])
         ;
     }
 

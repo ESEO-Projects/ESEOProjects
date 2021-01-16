@@ -1,20 +1,105 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block title %}Hello DashboardController!{% endblock %}
+{% block title %}Dashboard{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% if is_granted('ROLE_ADMIN') %}
+<div class="row">
+  <div class="col">
+    <div class="small-box bg-info">
+      <div class="inner">
+        <h3>{{projects|length}}</h3>
 
-<div class="example-wrapper">
-    <h1>Hello! ✅</h1>
-    {{ dump(projects) }}
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/halope/Dev/ESEOProjects/src/Controller/DashboardController.php'|file_link(0) }}">src/Controller/DashboardController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/halope/Dev/ESEOProjects/templates/dashboard/index.html.twig'|file_link(0) }}">templates/dashboard/index.html.twig</a></code></li>
-    </ul>
+        <p>Projets présentés</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-lightbulb"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="small-box bg-success">
+      <div class="inner">
+        <h3>{{ views }}</h3>
+
+        <p>Nombre vues totales</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-chart-bar"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="small-box bg-warning">
+      <div class="inner">
+        <h3>{{ users }}</h3>
+
+        <p>Etudiants enregistrés</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-user-alt"></i>
+      </div>
+    </div>
+  </div>
 </div>
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Liste des projets</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body table-responsive p-0" style="max-height: 600px;">
+        <table class="table table-head-fixed text-nowrap table-sm">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Promotion</th>
+              <th>Etudiants</th>
+              <th>Nombre de vues</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for project in projects %}
+            <tr>
+              <td>{{ project.name }}</td>
+              <td>{{ project.promotion }}</td>
+              <td>
+                <ul>
+                  {% for user in project.users %}
+                  <li>{{ user }}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+              <td>{{ project.views }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="row">
+  {% for project in projects %}
+  <div class="col">
+    <div class="card card-outline card-primary">
+      <div class="card-header">
+        {{ project.name }}
+      </div>
+      <div class="card-body">
+        <img src="{{ asset('uploads/thumbnails/' ~ project.thumbnail) }}" alt="Image de présentation du projet" class="card-img-top">
+        {{ project.shortDescription }}
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="alert alert-notice">
+    <p>Tu n'as pas encore de projet enregistré. En <a href="{{ path('project_new') }}">créer</a> un ?</p>
+  </div>
+{% endfor %}
+</div>
+{% endif %}
 {% endblock %}

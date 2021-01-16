@@ -5,9 +5,15 @@ namespace App\Security\Voter;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Security;
 
 class ProjectVoter extends Voter
 {
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     protected function supports($attribute, $subject)
     {
         // replace with your own logic
@@ -24,7 +30,9 @@ class ProjectVoter extends Voter
             return false;
         }
 
-        // ... (check conditions and return true to grant permission) ...
+        if ($this->security->isGranted('ROLE_ADMIN')){
+            return true;
+        }
         switch ($attribute) {
             case 'PROJECT_EDIT':
                 return $this->canEdit($user, $subject);
@@ -59,6 +67,6 @@ class ProjectVoter extends Voter
      * @return boolean          TRUE ou FALSE
      */
     private function canDelete(\App\Entity\User $user, \App\Entity\Project $project){
-        return $this->canEdit($user, $project);
+        return $this->canEdit($user, $project) || $this->security->isGranted('ROLE_ADMIN');
     }
 }

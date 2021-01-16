@@ -52,16 +52,6 @@ class PromotionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="promotion_show", methods={"GET"})
-     */
-    public function show(Promotion $promotion): Response
-    {
-        return $this->render('promotion/show.html.twig', [
-            'promotion' => $promotion,
-        ]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="promotion_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Promotion $promotion): Response

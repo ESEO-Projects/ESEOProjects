@@ -26,9 +26,9 @@ h2.name { text-align:center;padding:0 2rem 0.5rem;margin:0;padding:20px;}
 .actions .follow-btn button.active:active { background-color:#e8a200;transform:scale(1); }
 .desc { text-align:justify;padding:0 2rem 2.5rem;order:100; }
 .unselectable {
-  -webkit-touch-callout: none; 
-    -webkit-user-select: none; 
-     -khtml-user-select: none; 
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
@@ -57,18 +57,17 @@ h2.name { text-align:center;padding:0 2rem 0.5rem;margin:0;padding:20px;}
             <h2>
               <a href="#">
                 <span>{{ project.cost }}€</span>
-                <small>Cost</i></small>
+                <small>Coût estimé</small>
               </a>
             </h2>
             <h2>
               <a href="#">
                 <span>{{ project.views }}&nbsp;<i class="fas fa-eye"></i></span>
-                <small>Views</small>
+                <small>Vues</small>
               </a>
             </h2>
           </div>
           <div class="follow-btn">
-            {# put project route instead of githubUrl #}
             <button class="active"><a href="{{ path('project_show', {id: project.id}) }}" target="_blank">Page du projet</a></button>
           </div>
         </div>

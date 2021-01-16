@@ -50,4 +50,13 @@ class ProjectRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function getProjectsViews(): ?int
+    {
+      return (int) $this->createQueryBuilder('p')
+          ->select('SUM(p.views)')
+          ->getQuery()
+          ->getSingleScalarResult()
+      ;
+    }
 }

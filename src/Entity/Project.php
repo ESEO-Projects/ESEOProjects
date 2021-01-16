@@ -248,4 +248,9 @@ class Project
 
         return $this;
     }
+
+    public function toString(): ?string
+    {
+        return (string) sprintf('%s', $this->getName());
+    }
 }

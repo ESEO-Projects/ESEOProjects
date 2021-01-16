@@ -37,6 +37,7 @@ class ProjectController extends AbstractController
     public function new(Request $request, FileUploader $fileUploader): Response
     {
         $project = new Project();
+        $project->addUser($this->getUser());
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
 
