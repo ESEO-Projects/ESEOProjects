@@ -1,30 +1,40 @@
-{% extends 'base.html.twig' %}
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Simon Duperray, Alexandre Halopé">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-{% block title %}Se connecter{% endblock %}
+    <title>Connexion espace étudiants</title>
 
-{% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"><link href="{{ asset('css/signin.css') }}" rel="stylesheet">
+  </head>
+  <body>
+    <form class="form-signin text-center" method="post">
+      <img class="mb-4" src="https://eseo.fr/images/2018/logo-eseo-couleur-v2.png" alt="LOGO ESEO" height="80">
+      <h1 class="h3 mb-3 font-weight-normal">Connexion étudiants</h1>
+      {% if error %}
+          <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+      {% endif %}
+      {% if app.user %}
+          <div class="alert alert-notice mb-3">
+              Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
+          </div>
+      {% endif %}
+      <label for="inputEmail" class="sr-only">Adresse Email ESEO</label>
+      <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Adresse email ESEO" required autofocus>
+      <label for="inputPassword" class="sr-only">Mot de passe</label>
+      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+      <div class="checkbox ml-2 mb-3">
+        <label>
+          <input type="checkbox" value="remember-me">Se souvenir de moi
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
+    </form>
 
-    {% if app.user %}
-        <div class="mb-3">
-            Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
-        </div>
-    {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Se connecter</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-    <label for="inputPassword">Mot de passe</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
-
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Connexion
-    </button>
-</form>
-{{ app.environment == "dev" ? include("security/_users.html.twig") }}
-{% endblock %}
+  </body>
+</html>

@@ -5,6 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use App\Repository\ProjectRepository;
 
 /**
  * Lorsqu'un utilisateur se connecte, il a accès à son dashboard.
@@ -20,7 +21,7 @@ class DashboardController extends AbstractController
     {
         if($this->isGranted('ROLE_ADMIN')){
             return $this->render('dashboard/index.html.twig', [
-              'projects' => $projectRepository->getProjects(),
+              'projects' => $projectRepository->findAll(),
             ]);
         }
         else{
