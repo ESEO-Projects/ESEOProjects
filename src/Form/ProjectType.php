@@ -22,9 +22,6 @@ class ProjectType extends AbstractType
             ->add('name', TextType::class, [
               'label' => 'Nom du projet',
             ])
-            // ->add('description', TextareaType::class, [
-            //   'label' => 'Description du projet',
-            // ])
             ->add('description', TextareaType::class, array('attr' => array('class' => 'ckeditor')))
             ->add('short_description', TextType::class, [
               'label' => 'Courte description du projet (120 caractères, comme sur Twitter)',
