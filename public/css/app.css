@@ -1,6 +1,16 @@
+html, body{
+  height: 100%;
+}
+
 .app-header {
   line-height: 1;
-  border-bottom: 1px solid #e5e5e5;
+  background-color: #5a4d9b;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  min-height: 60px;
+  padding-top: 5px;
+  z-index: 10;
 }
 
 .app-logo{
@@ -24,11 +34,19 @@
   bottom: 0;
   left: 0;
   background: url('../wave.svg') top no-repeat;
-  z-index: -1;
 }
 
 .content{
   position: relative;
   z-index: 1;
+  background: url('../bg-pattern.jpg');
+}
+.content section{
+  z-index: 15;
+}
+
+footer{
+  width: 80%;
+  border-top: 1px solid #D0CCE2;
   background: url('../bg-pattern.jpg');
 }

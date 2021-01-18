@@ -10,12 +10,11 @@
 
   {% endblock %}
 </head>
-<body style="height:100%">
-  <div class="container-fluid">
+<body>
     <header class="app-header">
       <div class="row align-middle justify-content-md-center align-items-center">
         <div class="col-2">
-          <a href="{{ path('app_home') }}"><img src="{{ asset('logo-eseo-couleur-v2.png') }}" class="img-fluid" alt="Logo ESEO"></a>
+          <a href="{{ path('app_home') }}"><img src="{{ asset('logo-eseo-blanc.png') }}" class="img-fluid" alt="Logo ESEO"></a>
         </div>
         <div class="col-6">
           <div class="input-group">
@@ -27,10 +26,9 @@
         </div>
       </div>
     </header>
-  </div>
   <div class="js-off-canvas-overlay is-overlay-fixed"></div>
   <main class="container-fluid content">
-    <div class="container">
+    <div class="container" style="height:100%">
       {% block body %}
       {% endblock %}
     </div>
