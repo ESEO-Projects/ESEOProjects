@@ -1,4 +1,120 @@
 {{ form_start(form) }}
+    <div class="row">
+      <div class="col">
+        <div class="card card-outline card-red">
+          <div class="card-header">
+            <h3 class="card-title">{{ card_title|default('Fiche projet') }}</h3>
+          </div>
+          <div class="card-body">
+            <div class="form-group col-10">
+              {{ form_label(form.name) }}
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-lightbulb"></i></span>
+                </div>
+                {{ form_widget(form.name) }}
+                <div class="form-error">
+                  {{ form_errors(form.name) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-10">
+              {{ form_label(form.cost) }}
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                </div>
+                {{ form_widget(form.cost) }}
+                <div class="form-error">
+                  {{ form_errors(form.cost) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-10">
+              {{ form_label(form.promotion) }}
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
+                </div>
+                {{ form_widget(form.promotion) }}
+                <div class="form-error">
+                  {{ form_errors(form.promotion) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-10">
+              {{ form_label(form.users) }}
+              <div class="input-group">
+                {{ form_widget(form.users) }}
+                <div class="form-error">
+                  {{ form_errors(form.users) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-10">
+              {{ form_label(form.githubUrl) }}
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fab fa-github"></i></span>
+                </div>
+                {{ form_widget(form.githubUrl) }}
+                <div class="form-error">
+                  {{ form_errors(form.githubUrl) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-10">
+              {{ form_label(form.thumbnail_file) }}
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-file-image"></i></span>
+                </div>
+                {{ form_widget(form.thumbnail_file) }}
+                <div class="form-error">
+                  {{ form_errors(form.thumbnail_file) }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card card-outline card-indigo">
+          <div class="card-header">
+            <h3 class="card-title">Présentation du projet</h3>
+          </div>
+          <div class="card-body">
+            <div class="form-group col-10">
+              {{ form_label(form.short_description) }}
+              <small class="form-text test-muted">Faut que ça accroche le regard et que ça donne envie de regarder</small>
+              <div class="input-group">
+                {{ form_widget(form.short_description) }}
+                <div class="form-error">
+                  {{ form_errors(form.short_description) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-10">
+              {{ form_label(form.description) }}
+              <small class="form-text test-muted">Quelle a été l'idée originale ? Combien de temps pour réaliser le projet ? Qu'avez-vous découvert ? Y inclure une vidéo de présentation du projet.</small>
+              <div class="input-group">
+                {{ form_widget(form.description) }}
+                <div class="form-error">
+                  {{ form_errors(form.description) }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
     {{ form_widget(form) }}
-    <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+    <button class="btn btn-success">{{ button_label|default('Créer') }}</button>
 {{ form_end(form) }}

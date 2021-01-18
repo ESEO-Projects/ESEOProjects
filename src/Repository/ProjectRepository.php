@@ -59,4 +59,13 @@ class ProjectRepository extends ServiceEntityRepository
           ->getSingleScalarResult()
       ;
     }
+
+    public function search($title): array
+    {
+      return $this->createQueryBuilder('p')
+          ->andWhere('p.title LIKE :title')
+          ->setParameter('title', '%'.$title.'%')
+          ->getQuery()
+          ->getResult();
+    }
 }
