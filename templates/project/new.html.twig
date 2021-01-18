@@ -13,4 +13,11 @@
     theme: "bootstrap"
   });
 </script>
+<script src="{{ asset('admin/js/ckeditor_4.15.1_full/ckeditor/adapters/jquery.js') }}" type="text/javascript"></script>
+<script src="{{ asset('admin/js/ckeditor_4.15.1_full/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        $('textarea.ckeditor').ckeditor();
+    });
+</script>
 {% endblock %}
