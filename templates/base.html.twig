@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="/css/app.css">
-  <title>{% block title %}Welcome!{% endblock %}</title>
-  {% block stylesheets %}
+  <head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/app.css">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
 
-  {% endblock %}
-</head>
+    {% endblock %}
+  </head>
 <body>
-    <header class="app-header">
-      <div class="row align-middle justify-content-md-center align-items-center">
-        <div class="col-2">
-          <a href="{{ path('app_home') }}"><img src="{{ asset('logo-eseo-blanc.png') }}" class="img-fluid" alt="Logo ESEO"></a>
-        </div>
-        <div class="col-6">
-          <div class="input-group">
-             <input class="form-control input-lg" placeholder="Rechercher un projet, une idée, ..." aria-label="Rechercher un projet, une idée, ..." aria-describedby="button-search" type="text">
-             <div class="input-group-append">
-                <button class="btn btn-outline-secondary btn-lg" type="button" id="button-search"><i class="fas fa-search"></i></button>
-              </div>
+  <header class="navbar app-header fixed-top">
+    <div class="container d-flex justify-content-between">
+      <div class="col-2">
+        <a href="{{ path('app_home') }}"><img src="{{ asset('logo-eseo-blanc.png') }}" class="img-fluid" alt="Logo ESEO"></a>
+      </div>
+      <div class="col-6">
+        <div class="input-group">
+          <input class="form-control input-lg" placeholder="Rechercher un projet, une idée, ..." aria-label="Rechercher un projet, une idée, ..." aria-describedby="button-search" type="text">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary btn-lg" type="button" id="button-search"><i class="fas fa-search"></i></button>
           </div>
         </div>
       </div>
-    </header>
-  <div class="js-off-canvas-overlay is-overlay-fixed"></div>
+    </div>
+  </header>
   <main class="container-fluid content">
-    <div class="container" style="height:100%">
+    <div class="container">
       {% block body %}
       {% endblock %}
     </div>

@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Project{% endblock %}
+{% block title %}Plateforme projets - ESEO | {{project.name}}{% endblock %}
 
 {% block stylesheets %}
 <style>
 *  { color:#000; }
 hr { margin: 10px 0; }
 div.global_container {  }
-div.card { margin-top:65px; }
+div.card { margin-top:65px; max-width: 100%;}
 h1#project_name {  }
 p#users { color:grey;font-size:12px; }
 div.card_footer a { font-size:40px;margin:0 10px; }
@@ -37,7 +37,7 @@ div#inline { dsplay:flex;flex-direction:row; }
 
 
 {% block body %}
-    <div class="global_container">
+    <div class="container">
         <div class="card">
             <h5 class="card-header">{{ project.name }} | {{ project.createdAt ? project.createdAt|date('Y-m-d') : '' }}</h5>
             <div class="card-body">
@@ -46,7 +46,7 @@ div#inline { dsplay:flex;flex-direction:row; }
                 {% if project.githubUrl != "" %}
                     <p>
                         <span style="font-weight:bold;">
-                            Code source: 
+                            Code source:
                         <span>
                         <a id="repo_github" target="_blank" href="{{ project.githubUrl }}">
                             Repository Github
@@ -67,7 +67,7 @@ div#inline { dsplay:flex;flex-direction:row; }
                         <li>
                             <a href="#0">
                                 <span>
-                                    <i class="fas fa-euro-sign"></i>   
+                                    <i class="fas fa-euro-sign"></i>
                                 </span>
                                 <span>{{ project.cost }}</span>
                             </a>
@@ -78,11 +78,9 @@ div#inline { dsplay:flex;flex-direction:row; }
         </div>
 
         <div id="redirection_links">
-            <a class="btn btn-primary" href="{{ path('project_index') }}">back to list</a>
-            <a class="btn btn-primary" href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+            <a class="btn btn-primary" href="{{ path('project_index') }}">Retour à la liste</a>
         </div>
     </div>
-    {{ include('project/_delete_form.html.twig') }}
 {% endblock %}
 {% block javascripts %}
 <script src="https://kit.fontawesome.com/ebc72dbf59.js" crossorigin="anonymous"></script>
