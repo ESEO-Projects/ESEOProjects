@@ -37,51 +37,50 @@ div#inline { dsplay:flex;flex-direction:row; }
 
 
 {% block body %}
-    <div class="container">
-        <div class="card">
-            <h5 class="card-header">{{ project.name }} | {{ project.createdAt ? project.createdAt|date('Y-m-d') : '' }}</h5>
-            <div class="card-body">
-                <p id="users">{{ project.users|users }}</p>
-                <p class="card-text">{{ project.description|raw }}</p>
-                {% if project.githubUrl != "" %}
-                    <p>
-                        <span style="font-weight:bold;">
-                            Code source:
-                        <span>
-                        <a id="repo_github" target="_blank" href="{{ project.githubUrl }}">
-                            Repository Github
-                        </a>
-                    </p>
-                {% endif %}
-                <hr>
-                <div class="card_footer">
-                    <ul class="menu">
-                        <li>
-                            <a href="#0">
-                                <span>
-                                    <i class="fas fa-eye"></i>
-                                </span>
-                                <span>{{ project.views }}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#0">
-                                <span>
-                                    <i class="fas fa-euro-sign"></i>
-                                </span>
-                                <span>{{ project.cost }}</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div id="redirection_links">
-            <a class="btn btn-primary" href="{{ path('project_index') }}">Retour à la liste</a>
-        </div>
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">
+        {{ project.name }} | {{ project.createdAt ? project.createdAt|date('d/m/Y') : '' }}
+      </h3>
     </div>
-{% endblock %}
-{% block javascripts %}
-<script src="https://kit.fontawesome.com/ebc72dbf59.js" crossorigin="anonymous"></script>
+    <div class="card-body">
+      <p id="users">{{ project.users|users }}</p>
+      <div class="card-text">{{ project.description|raw }}</div>
+      {% if project.githubUrl != "" %}
+      <p>
+        <span style="font-weight:bold;">
+          Code source:
+            <a id="repo_github" target="_blank" href="{{ project.githubUrl }}">
+              Dépôt Github
+            </a>
+          </p>
+          {% endif %}
+          <hr>
+        </div>
+        <div class="card-footer" style="background-color: #FFF; font-size: 20px;">
+          <ul class="menu justify-content-around">
+            <li>
+              <a href="#0">
+                <span><i class="fas fa-eye"></i></span>
+                <span>{{ project.views }}</span>
+              </a>
+            </li>
+            <li>
+              <a href="#0">
+                <span><i class="fas fa-euro-sign"></i></span>
+                <span>{{ project.cost }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="redirection_links">
+        <a class="btn btn-primary" href="{{ path('project_index') }}">Retour à la liste</a>
+      </div>
+    </div>
+  {% endblock %}
+  {% block javascripts %}
+  <script src="https://kit.fontawesome.com/ebc72dbf59.js" crossorigin="anonymous"></script>
 {% endblock %}

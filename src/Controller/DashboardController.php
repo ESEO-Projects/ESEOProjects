@@ -24,7 +24,8 @@ class DashboardController extends AbstractController
             return $this->render('dashboard/index.html.twig', [
               'projects' => $projectRepository->findAll(),
               'users' => count($userRepository->findAll()),
-              'views' => $projectRepository->getProjectsViews()
+              'views' => $projectRepository->getProjectsViews(),
+              'not_enabled' => $userRepository->findBy(['enabled' => false])
             ]);
         }
         else{

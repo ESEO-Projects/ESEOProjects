@@ -38,6 +38,7 @@ class AppFixtures extends Fixture
         $teacher->setLastname("Ben Boubaker");
         $teacher->setEmail("admin@eseo.fr");
         $teacher->setPassword($this->passwordEncoder->encodePassword($teacher,"admin"));
+        $teacher->setEnabled(true);
         $manager->persist($teacher);
 
 
@@ -47,6 +48,7 @@ class AppFixtures extends Fixture
         $student1->setLastname("Castel");
         $student1->setEmail("robert@castel.fr");
         $student1->setPassword($this->passwordEncoder->encodePassword($student1,"robert"));
+        $student1->setEnabled(true);
         $manager->persist($student1);
 
         $student2 = new User();
@@ -55,6 +57,7 @@ class AppFixtures extends Fixture
         $student2->setLastname("Chameau");
         $student2->setEmail("bernard@chameau.fr");
         $student2->setPassword($this->passwordEncoder->encodePassword($student2,"bernard"));
+        $student2->setEnabled(true);
         $manager->persist($student2);
 
         $student3 = new User();
@@ -63,6 +66,7 @@ class AppFixtures extends Fixture
         $student3->setLastname("Bieme");
         $student3->setEmail("claude@bieme.fr");
         $student3->setPassword($this->passwordEncoder->encodePassword($student3,"claude"));
+        $student3->setEnabled(true);
         $manager->persist($student3);
 
         $student4 = new User();
@@ -71,7 +75,17 @@ class AppFixtures extends Fixture
         $student4->setLastname("Limonade");
         $student4->setEmail("gontrand@limonade.fr");
         $student4->setPassword($this->passwordEncoder->encodePassword($student4,"gontrand"));
+        $student4->setEnabled(true);
         $manager->persist($student4);
+
+        $student5 = new User();
+        $student5->setRoles(["ROLE_STUDENT"]);
+        $student5->setFirstname("Pascal");
+        $student5->setLastname("Edgard");
+        $student5->setEmail("pascal@edgard.fr");
+        $student5->setPassword($this->passwordEncoder->encodePassword($student5,"pascal"));
+        $student5->setEnabled(false);
+        $manager->persist($student5);
 
         $project1 = new Project();
         $project1->setName("Projet Arduino LEDs qui clignotent quand on baille");

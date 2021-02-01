@@ -63,7 +63,7 @@ class ProjectRepository extends ServiceEntityRepository
     public function search($title): array
     {
       return $this->createQueryBuilder('p')
-          ->andWhere('p.title LIKE :title')
+          ->andWhere('p.name LIKE :title')
           ->setParameter('title', '%'.$title.'%')
           ->getQuery()
           ->getResult();

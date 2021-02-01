@@ -5,9 +5,22 @@ namespace App\Twig;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
+use Symfony\Component\Form\FormFactoryInterface;
+use App\Form\SearchProjectType;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class AppExtension extends AbstractExtension
 {
+
+    private $formFactory;
+    private $url;
+
+    public function __construct(FormFactoryInterface $formFactory, UrlGeneratorInterface $url)
+    {
+        $this->formFactory = $formFactory;
+        $this->url = $url;
+    }
+
     public function getFilters(): array
     {
         return [
@@ -18,19 +31,27 @@ class AppExtension extends AbstractExtension
         ];
     }
 
-    // public function getFunctions(): array
-    // {
-    //     return [
-    //         new TwigFunction('function_name', [$this, 'doSomething']),
-    //     ];
-    // }
+    public function getFunctions(): array
+    {
+        return [
+            new TwigFunction('searchForm', [$this, 'searchForm']),
+        ];
+    }
 
     public function formatUsers($users)
     {
         $chaine = "";
         foreach($users as $user){
-          $chaine .= sprintf('%s %s | ', $user->getLastname(), $user->getFirstname());
+            $chaine .= sprintf('%s %s | ', $user->getLastname(), $user->getFirstname());
         }
         return mb_substr($chaine, 0, -2); // On renvoit la chaîne créée, ôtée des deux derniers charactères ("| ")
+    }
+
+    public function searchForm()
+    {
+      $formFactory = $this->formFactory;
+      $form = $formFactory->create(SearchProjectType::class, null, ['method' => 'GET', 'action' => $this->url->generate('project_search')]);
+
+      return $form->createView();
     }
 }

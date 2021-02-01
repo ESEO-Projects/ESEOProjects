@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-
 /**
  * @Route("/project")
  */
@@ -61,7 +60,7 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="project_show", methods={"GET"})
+     * @Route("/show/{id}", name="project_show", methods={"GET"})
      */
     public function show(Project $project): Response
     {
@@ -111,4 +110,23 @@ class ProjectController extends AbstractController
         return $this->redirectToRoute('project_index');
     }
 
+    /**
+     * [search description]
+     * @param  [type]   $search [description]
+     * @return Response         [description]
+     * @Route("/search/{search}", name="project_search", methods={"GET"})
+     */
+    public function search($search = null, ProjectRepository $projectRepository, Request $request): Response
+    {
+        $projects = $projectRepository->search($search);
+        $allProjects = $projectRepository->findAll();
+        $others = array_rand($allProjects, 2);
+        dump($projects);
+        dump($search);
+        return $this->render('project/search.html.twig', [
+          'projects' => $projects,
+          'search' => $search,
+          'others' => $others
+        ]);
+    }
 }

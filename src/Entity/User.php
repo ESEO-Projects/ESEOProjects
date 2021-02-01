@@ -52,6 +52,16 @@ class User implements UserInterface
      */
     private $lastname;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled = false;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $linkedinUrl;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
@@ -189,5 +199,29 @@ class User implements UserInterface
     public function __toString(): string
     {
         return (string) $this->getFirstname()." ".$this->getLastname();
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    public function getLinkedinUrl(): ?string
+    {
+        return $this->linkedinUrl;
+    }
+
+    public function setLinkedinUrl(?string $linkedinUrl): self
+    {
+        $this->linkedinUrl = $linkedinUrl;
+
+        return $this;
     }
 }

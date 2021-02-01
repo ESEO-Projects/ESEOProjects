@@ -17,17 +17,19 @@ html, body {
 .content{
   position: relative;
   background: url('../bg-pattern.jpg');
-  padding-top: 40px;
-}
-
-.container-fluid{
-  margin-top: 0px;
+  margin-top: 40px;
 }
 
 footer{
   width: 100%;
   border-top: 1px solid #D0CCE2;
   background: url('../bg-pattern.jpg');
+}
+
+#button-search{
+  background-color: #FFF !important;
+  border-radius: 0 !important;
+  border-left: .5px solid black;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");

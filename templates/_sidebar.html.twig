@@ -27,6 +27,12 @@
             <p>Ajouter un projet</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{{ path('profile_index', {'id': app.user.id}) }}" class="nav-link">
+            <i class="nav-icon fas fa-user"></i>
+            <p>Mon profil</p>
+          </a>
+        </li>
       </ul>
       {% if is_granted('ROLE_ADMIN') %}
       <ul class="nav nav-pills nav-sidebar flex-column" role="menu">

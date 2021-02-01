@@ -15,7 +15,7 @@ class HomeController extends AbstractController
     public function index(ProjectRepository $projectRepository): Response
     {
         return $this->render('home/index.html.twig', [
-            'projects' => $projectRepository->findAll(),
+            'projects' => $projectRepository->findBy([], ['createdAt' => 'DESC'], 20),
             'currentDate' => new \DateTime('now')
         ]);
     }

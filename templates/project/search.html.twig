@@ -7,6 +7,7 @@
 </section>
 <div id="global_container">
   <div class="row d-flex align-items-stretch">
+    <p>Résultat(s) de la recherche : {{search}}</p>
     {% for project in projects %}
     <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
       <div class="card unselectable">
@@ -32,13 +33,17 @@
             </h2>
           </div>
           <div class="follow-btn">
-            <button class="active"><a href="{{ path('project_show', {'id': project.id}) }}">Page du projet</a></button>
+            <button class="active"><a href="{{ path('project_show', {id: project.id}) }}" target="_blank">Page du projet</a></button>
           </div>
         </div>
         <div class="desc">
           {{ project.shortDescription }}
         </div>
       </div>
+    </div>
+    {% else %}
+    <div class="alert alert-warning">
+      <p>Aucun résulat pour cette recherche. Néanmoins, nous avons sélectionné pour vous 2 autres projets, au hasard: </p>
     </div>
     {% endfor %}
   </div>
