@@ -35,7 +35,7 @@ class Project
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $githubUrl;
+    private $githubUrl = "";
 
     /**
      * @ORM\Column(type="float", nullable=true)
