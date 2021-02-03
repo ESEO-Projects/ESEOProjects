@@ -71,7 +71,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $linkedinUrl;
+    private $linkedInUrl;
 
     public function __construct()
     {
