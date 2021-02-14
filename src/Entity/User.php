@@ -224,14 +224,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getLinkedinUrl(): ?string
+    public function getLinkedInUrl(): ?string
     {
-        return $this->linkedinUrl;
+        return $this->linkedInUrl;
     }
 
-    public function setLinkedinUrl(?string $linkedinUrl): self
+    public function setLinkedInUrl(?string $linkedInUrl): self
     {
-        $this->linkedinUrl = $linkedinUrl;
+        $this->linkedInUrl = $linkedInUrl;
 
         return $this;
     }
