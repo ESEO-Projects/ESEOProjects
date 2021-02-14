@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CreateUserController extends AbstractController
 {
   /**
-   * @Route("/register", name="user_new", methods={"GET","POST"})
+   * @Route("/register", name="register", methods={"GET","POST"})
    *
    */
   public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
