@@ -31,7 +31,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
-     *
+    * @IsGranted("ROLE_ANONYMOUS")
      */
     public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
