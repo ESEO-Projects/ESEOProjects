@@ -114,19 +114,17 @@ class ProjectController extends AbstractController
      * [search description]
      * @param  [type]   $search [description]
      * @return Response         [description]
-     * @Route("/search/{search}", name="project_search", methods={"GET"})
+     * @Route("/search/", name="project_search", methods={"GET"})
      */
-    public function search($search = null, ProjectRepository $projectRepository, Request $request): Response
+    public function search(ProjectRepository $projectRepository, Request $request): Response
     {
+        $search = $request->query->get('search_project')["name"];
         $projects = $projectRepository->search($search);
-        $allProjects = $projectRepository->findAll();
-        $others = array_rand($allProjects, 2);
-        dump($projects);
-        dump($search);
+
+
         return $this->render('project/search.html.twig', [
           'projects' => $projects,
-          'search' => $search,
-          'others' => $others
+          'search' => $search
         ]);
     }
 }

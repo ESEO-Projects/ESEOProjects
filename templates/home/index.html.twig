@@ -1,50 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<section class="mt-3">
-  <h1 class="display">PROJETS PEDAGOGIQUES</h1>
-  <p class="lead">Projets des Classes Préparatoires</p>
-</section>
-<div id="global_container">
-  <div class="row d-flex align-items-stretch">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
     {% for project in projects %}
-    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-      <div class="card unselectable">
-        <div class="banner">
-          <img style="pointer-events:none;" src="{{ asset('elec.png') }}" />
-          {# <img src="{{ asset('uploads/thumbnails/' ~ project.thumbnail) }}" /> #}
+    <div class="col">
+      <div class="card shadow-sm">
+        <img style="pointer-events:none;" src="{{ asset('elec.png') }}" />
+        <div class="card-header project-title">
+          <h3 class="name">{{ project.name }}</h3>
         </div>
-        <h2 class="name">{{ project.name }}</h2>
-        <div class="title">{{ project.users|users }}</div>
-        <div class="actions">
-          <div class="follow-info">
-            <h2>
-              <a href="#">
-                <span>{{ project.cost }}€</span>
-                <small>Coût estimé</small>
-              </a>
-            </h2>
-            <h2>
-              <a href="#">
-                <span>{{ project.views }}&nbsp;<i class="fas fa-eye"></i></span>
-                <small>Vues</small>
-              </a>
-            </h2>
+        <div class="card-body">
+          <p class="card-text">{{ project.shortDescription }}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <a href="{{ path('project_show', {'id': project.id}) }}" class="btn btn-sm project-show">Page du projet</a>
           </div>
-          <div class="follow-btn">
-            <button class="active"><a href="{{ path('project_show', {'id': project.id}) }}">Page du projet</a></button>
-          </div>
-        </div>
-        <div class="desc">
-          {{ project.shortDescription }}
         </div>
       </div>
     </div>
     {% endfor %}
   </div>
-</div>
-
-{% endblock %}
-{% block javascripts %}
-<script src="https://kit.fontawesome.com/ebc72dbf59.js" crossorigin="anonymous"></script>
 {% endblock %}

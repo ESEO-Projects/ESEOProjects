@@ -4,15 +4,6 @@
 
 {% block stylesheets %}
 <style>
-*  { color:#000; }
-hr { margin: 10px 0; }
-div.global_container {  }
-div.card { margin-top:65px; max-width: 100%;}
-h1#project_name {  }
-p#users { color:grey;font-size:12px; }
-div.card_footer a { font-size:40px;margin:0 10px; }
-div.card_footer a:hover { cursor:pointer; }
-#redirection_links { margin:10px 0; }
 div#inline { dsplay:flex;flex-direction:row; }
 .menu { display: flex;justify-content: center;list-style:none;margin:0;padding:0; }
 .menu a span:first-child { display: inline-block;padding: 20px; }
@@ -28,7 +19,7 @@ div#inline { dsplay:flex;flex-direction:row; }
   justify-content: center;
   transform: translateY(-100%);
 }
-.menu a span { transition: transform 0.2s ease-out; }
+.menu a span { transition: transform 0.2s ease-out; min-width: 125px;}
 .menu a:hover span:first-child { transform: translateY(100%); }
 .menu a:hover span:last-child { transform: none; }
 #repo_github { color:#000;text-decoration:underline;font-weight:normal; }
@@ -37,7 +28,7 @@ div#inline { dsplay:flex;flex-direction:row; }
 
 
 {% block body %}
-<div class="container-fluid">
+<div class="row">
   <div class="card">
     <div class="card-header">
       <h3 class="card-title">
@@ -47,40 +38,33 @@ div#inline { dsplay:flex;flex-direction:row; }
     <div class="card-body">
       <p id="users">{{ project.users|users }}</p>
       <div class="card-text">{{ project.description|raw }}</div>
-      {% if project.githubUrl != "" %}
+      {% if project.githubUrl is not empty %}
+      <hr>
       <p>
+        Les étudiants de ce projet ont mis à disposition leur réalisation sur Github.<br>
         <span style="font-weight:bold;">
-          Code source:
-            <a id="repo_github" target="_blank" href="{{ project.githubUrl }}">
-              Dépôt Github
-            </a>
-          </p>
-          {% endif %}
-          <hr>
-        </div>
-        <div class="card-footer" style="background-color: #FFF; font-size: 20px;">
-          <ul class="menu justify-content-around">
-            <li>
-              <a href="#0">
-                <span><i class="fas fa-eye"></i></span>
-                <span>{{ project.views }}</span>
-              </a>
-            </li>
-            <li>
-              <a href="#0">
-                <span><i class="fas fa-euro-sign"></i></span>
-                <span>{{ project.cost }}</span>
-              </a>
-            </li>
-          </ul>
-        </div>
+          Code source: <a id="repo_github" target="_blank" href="{{ project.githubUrl }}">Dépôt Github</a>
+        </p>
+        {% endif %}
       </div>
-
-      <div id="redirection_links">
-        <a class="btn btn-primary" href="{{ path('project_index') }}">Retour à la liste</a>
+      <div class="card-footer" style="background-color: #FFF; font-size: 20px;">
+        <ul class="menu justify-content-around">
+          <li>
+            <a href="#0">
+              <span><i class="fas fa-eye"></i></span>
+              <span>{{ project.views }} vues</span>
+            </a>
+          </li>
+          <li>
+            <a href="#0">
+              <span><i class="fas fa-euro-sign"></i></span>
+              <span>{{ project.cost }} €</span>
+            </a>
+          </li>
+        </div>
       </div>
     </div>
+    <div class="mt-5 row">
+      <a class="btn btn-primary" href="{{ path('project_index') }}">Retour à la liste des projets</a>
+    </div>
   {% endblock %}
-  {% block javascripts %}
-  <script src="https://kit.fontawesome.com/ebc72dbf59.js" crossorigin="anonymous"></script>
-{% endblock %}
