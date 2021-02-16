@@ -1,0 +1,39 @@
+{% extends "admin.html.twig" %}
+{% block title %}Liste de tous les projets{% endblock %}
+
+{% block body %}
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Liste de tous les projets</h3>
+  </div>
+  <div class="card-body">
+    <table class="table datatable">
+      <thead>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Nombre de vues</th>
+        <th>Etudiants</th>
+        <th>Promo</th>
+        <th>/</th>
+      </thead>
+      <tbody>
+        {% for project in projects %}
+        <tr>
+          <td>{{ project.name }}</td>
+          <td>{{ project.shortDescription }}</td>
+          <td>{{ project.views }}</td>
+          <td>{{ project.users|users }}</td>
+          <td>{{ project.promotion }}</td>
+          <td class="btn-group">
+            <a class="btn btn-primary" href="{{ path('project_show', {'id': project.id}) }}">Voir</a>
+            <a class="btn btn-dark" href="{{ path('project_edit', {'id': project.id}) }}">Modifier</a>
+          </td>
+        </tr>
+        {% else %}
+        <p>Il n'y a aucun projet sur la plateforme.</p>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

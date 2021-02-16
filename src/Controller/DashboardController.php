@@ -34,4 +34,18 @@ class DashboardController extends AbstractController
             ]);
         }
     }
+
+    /**
+     * [projects description]
+     * @param  ProjectRepository $projectRepository [description]
+     * @return Response                             [description]
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/dashboard/projects", name="dashboard_projects")
+     */
+    public function projects(ProjectRepository $projectRepository): Response
+    {
+        return $this->render('dashboard/projects.html.twig', [
+          'projects' => $projectRepository->findAll()
+        ]);
+    }
 }

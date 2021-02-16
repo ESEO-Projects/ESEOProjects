@@ -116,5 +116,13 @@
       </div>
     </div>
     {{ form_widget(form) }}
+
     <button class="btn btn-success">{{ button_label|default('Créer') }}</button>
+
 {{ form_end(form) }}
+
+{% if is_granted('ROLE_ADMIN') %}
+<div class="row mt-3">
+  {% include 'project/_delete_form.html.twig' %}
+</div>
+{% endif %}
