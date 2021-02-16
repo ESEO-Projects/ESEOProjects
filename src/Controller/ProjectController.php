@@ -73,7 +73,7 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="project_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="project_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_STUDENT")
      */
     public function edit(Request $request, Project $project): Response
@@ -95,7 +95,7 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="project_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="project_delete", methods={"DELETE"})
      * @IsGranted("ROLE_STUDENT")
      */
     public function delete(Request $request, Project $project): Response
