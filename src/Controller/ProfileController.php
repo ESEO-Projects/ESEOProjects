@@ -15,6 +15,7 @@ class ProfileController extends AbstractController
      */
     public function index(Request $request, User $user): Response
     {
+        $this->denyAccessUnlessGranted('PROFILE_EDIT', $user);
         $form = $this->createForm(UserType::class, $user, ['show_roles' => $this->isGranted('ROLE_ADMIN')]);
         $form->handleRequest($request);
 

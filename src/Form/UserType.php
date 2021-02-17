@@ -25,7 +25,7 @@ class UserType extends AbstractType
               'label' => 'Email'
             ])
             ->add('linkedinUrl', null, [
-              'label' => 'Compte LinkedIn'
+              'label' => 'Compte LinkedIn (URL)'
             ])
         ;
         if($options['show_roles']){

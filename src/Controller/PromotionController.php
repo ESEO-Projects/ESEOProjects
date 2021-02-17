@@ -52,7 +52,7 @@ class PromotionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="promotion_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="promotion_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Promotion $promotion): Response
     {
@@ -72,7 +72,7 @@ class PromotionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="promotion_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="promotion_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Promotion $promotion): Response
     {
