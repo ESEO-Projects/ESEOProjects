@@ -11,12 +11,12 @@
         </div>
     {% endfor %}
 {% endfor %}
-{% if is_granted('ROLE_ADMIN') %}
+
 <div class="row">
   <div class="col">
     <div class="small-box bg-info">
       <div class="inner">
-        <h3>{{projects|length}}</h3>
+        <h3>{{ numberOfProjects }}</h3>
 
         <p>Projets présentés</p>
       </div>
@@ -40,7 +40,7 @@
   <div class="col">
     <div class="small-box bg-warning">
       <div class="inner">
-        <h3>{{ users }}</h3>
+        <h3>{{ numberOfUsers }}</h3>
 
         <p>Etudiants enregistrés</p>
       </div>
@@ -50,6 +50,8 @@
     </div>
   </div>
 </div>
+
+{% if is_granted('ROLE_ADMIN') %}
 <div class="row">
   <div class="col">
     <div class="card card-outline card-primary">
@@ -84,6 +86,10 @@
             {% endfor %}
           </tbody>
         </table>
+        <div class="navigation">
+            {{ knp_pagination_render(projects) }}
+        </div>
+
       </div>
       <!-- /.card-body -->
     </div>
@@ -105,6 +111,7 @@
   </div>
   {% endif %}
 </div>
+
 {% else %}
 <div class="row">
   {% for project in projects %}
@@ -123,10 +130,62 @@
     </div>
   </div>
   {% else %}
-  <div class="alert alert-notice">
-    <p class="lead">Tu n'as pas encore de projet enregistré. En <a href="{{ path('project_new') }}">créer</a> un ?</p>
+  <div class="col-6">
+    <div class="card card-orange">
+      <div class="card-header">
+        <h3 class="card-title">Liste des projets</h3>
+      </div>
+      <div class="card-body">
+        <div class="alert alert-warning">
+          Tu n'as pas encore de projet enregistré ! En <a href="{{ path('project_new') }}" class="alert-link">créer</a> un ?
+        </div>
+      </div>
+    </div>
   </div>
   {% endfor %}
 </div>
+<div class="row">
+  <div class="col">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Tous les projets de la plateforme</h3>
+      </div>
+      <div class="card-body">
+        <table class="table table-head-fixed table-sm">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Promotion</th>
+              <th>Etudiants</th>
+              <th>Nombre de vues</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for other in othersProjects %}
+            <tr>
+              <td><a href="{{ path('project_show', {'id': other.id}) }}">{{ other.name }}</a></td>
+              <td>{{ other.promotion }}</td>
+              <td>
+                <ul>
+                  {% for user in other.users %}
+                  <li>{{ user }}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+              <td>{{ other.views }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <div class="navigation">
+            {{ knp_pagination_render(othersProjects) }}
+        </div>
+        <p class="text-muted">Il y a {{ othersProjects.getTotalItemCount }} projets sur la plateforme</p>
+      </div>
+    </div>
+  </div>
+</div>
 {% endif %}
+
 {% endblock %}

@@ -12,9 +12,15 @@ class PromotionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('startingYear')
-            ->add('graduationYear')
+            ->add('name', null, [
+              'label' => 'Nom de la promotion'
+            ])
+            ->add('startingYear', null, [
+              'label' => 'Année de début'
+            ])
+            ->add('graduationYear', null, [
+              'label' => 'Année de diplomation'
+            ])
         ;
     }
 

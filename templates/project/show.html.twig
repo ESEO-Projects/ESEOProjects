@@ -4,7 +4,6 @@
 
 {% block stylesheets %}
 <style>
-div#inline { dsplay:flex;flex-direction:row; }
 .menu { display: flex;justify-content: center;list-style:none;margin:0;padding:0; }
 .menu a span:first-child { display: inline-block;padding: 20px; }
 .menu a { display: block;position: relative;overflow: hidden; }
@@ -29,14 +28,15 @@ div#inline { dsplay:flex;flex-direction:row; }
 
 {% block body %}
 <div class="row">
-  <div class="card">
+  <div class="card p-0">
     <div class="card-header">
       <h3 class="card-title">
-        {{ project.name }} | {{ project.createdAt ? project.createdAt|date('d/m/Y') : '' }}
+        {{ project.name }}
+        <small class="text-muted float-right">Promotion : {{ project.promotion }}</small>
       </h3>
     </div>
     <div class="card-body">
-      <p id="users">{{ project.users|users }}</p>
+      <p>Réalisateurs : {{ project.users|users }}</p>
       <div class="card-text">{{ project.description|raw }}</div>
       {% if project.githubUrl is not empty %}
       <hr>

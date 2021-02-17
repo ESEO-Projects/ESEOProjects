@@ -28,6 +28,7 @@ class ProjectType extends AbstractType
             ])
             ->add('githubUrl', TextType::class, [
               'label' => 'URL Github (s\'il y a lieu)',
+              'required' => false
             ])
             ->add('cost', NumberType::class, [
               'label' => 'Coût estimé du projet',

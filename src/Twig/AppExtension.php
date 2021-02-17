@@ -27,7 +27,7 @@ class AppExtension extends AbstractExtension
             // If your filter generates SAFE HTML, you should add a third
             // parameter: ['is_safe' => ['html']]
             // Reference: https://twig.symfony.com/doc/2.x/advanced.html#automatic-escaping
-            new TwigFilter('users', [$this, 'formatUsers']),
+            new TwigFilter('users', [$this, 'formatUsers'], ['pre_escape' => 'html', 'is_safe' => ['html']]),
         ];
     }
 
@@ -42,9 +42,16 @@ class AppExtension extends AbstractExtension
     {
         $chaine = "";
         foreach($users as $user){
-            $chaine .= sprintf('%s %s | ', $user->getLastname(), $user->getFirstname());
+          $utilisateur = "<b>".$user->getLastname()." ".$user->getFirstname()."</b>";
+
+          if(!empty($user->getLinkedInUrl())){
+              $url = $user->getLinkedInUrl();
+              $utilisateur .= " <a href=\"$url\"><i class=\"fab fa-linkedin\"></i></a>";
+          }
+          $chaine .= $utilisateur." | ";
         }
-        return mb_substr($chaine, 0, -2); // On renvoit la chaîne créée, ôtée des deux derniers charactères ("| ")
+
+        return mb_substr($chaine, 0, -2);
     }
 
     public function searchForm()
