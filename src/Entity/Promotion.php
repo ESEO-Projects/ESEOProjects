@@ -117,6 +117,6 @@ class Promotion
 
     public function __toString(): string
     {
-        return (string) $this->getName();
+        return (string) $this->getName() . " (" . $this->getStartingYear()->format('Y') . "-" . $this->getGraduationYear()->format('Y') . ")";
     }
 }

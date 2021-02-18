@@ -212,6 +212,11 @@ class User implements UserInterface
         return (string) $this->getFirstname()." ".$this->getLastname();
     }
 
+    public function getInitial(): string
+    {
+        return (string) strtoupper($this->getFirstname()[0].$this->getLastname()[0]);
+    }
+
     public function getEnabled(): ?bool
     {
         return $this->enabled;

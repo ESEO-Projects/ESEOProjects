@@ -33,6 +33,7 @@ class ProjectController extends AbstractController
      */
     public function new(Request $request, FileUploader $fileUploader): Response
     {
+        dump(openssl_get_cert_locations());
         $project = new Project();
         $project->addUser($this->getUser());
         $form = $this->createForm(ProjectType::class, $project);

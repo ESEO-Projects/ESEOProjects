@@ -28,24 +28,24 @@
 
 {% block body %}
 <div class="row">
-  <div class="card p-0">
-    <div class="card-header">
-      <h3 class="card-title">
-        {{ project.name }}
-        <small class="text-muted float-right">Promotion : {{ project.promotion }}</small>
-      </h3>
-    </div>
-    <div class="card-body">
-      <p>Réalisateurs : {{ project.users|users }}</p>
-      <div class="card-text">{{ project.description|raw }}</div>
-      {% if project.githubUrl is not empty %}
-      <hr>
-      <p>
-        Les étudiants de ce projet ont mis à disposition leur réalisation sur Github.<br>
-        <span style="font-weight:bold;">
-          Code source: <a id="repo_github" target="_blank" href="{{ project.githubUrl }}">Dépôt Github</a>
-        </p>
-        {% endif %}
+  <div class="col-md-8 col-lg-8">
+    <div class="card p-0">
+      <img src="{{ asset('elec.png') }}" alt="Image de présentation du projet" class="img-card-top img-fluid">
+      <div class="card-header">
+        <h3 class="card-title">
+          {{ project.name }}
+        </h3>
+      </div>
+      <div class="card-body">
+        <div class="card-text">{{ project.description|raw }}</div>
+        {% if project.githubUrl is not empty %}
+        <hr>
+        <p>
+          Les étudiants de ce projet ont mis à disposition leur réalisation sur Github.<br>
+          <span style="font-weight:bold;">
+            Code source: <a id="repo_github" target="_blank" href="{{ project.githubUrl }}">Dépôt Github</a>
+          </p>
+          {% endif %}
       </div>
       <div class="card-footer" style="background-color: #FFF; font-size: 20px;">
         <ul class="menu justify-content-around">
@@ -61,10 +61,54 @@
               <span>{{ project.cost }} €</span>
             </a>
           </li>
-        </div>
+        </ul>
       </div>
     </div>
-    <div class="mt-5 row">
-      <a class="btn btn-primary" href="{{ path('project_index') }}">Retour à la liste des projets</a>
+  </div>
+  <div class="col-md-4 col-xl-4">
+    <div class="row">
+      <h5>AUTEURS</h5>
+      <hr>
+      {% for user in project.users %}
+      <div class="card m-1">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-2 border-end border-3">
+                {{ user|avatar }}
+            </div>
+            <div class="col-10">
+              <div class="row p-1">
+                <div class="row">
+                  <p class="h5">{{ user }}</p>
+                  {% if user.linkedInUrl %}
+                  <a href="{{ user.linkedInUrl }}" class="btn btn-primary w-50" title="Profil LinkedIn de {{user}}"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
+    <div class="row mt-2">
+      <h5>PROMOTION</h5>
+      <hr>
+      <p>{{ project.promotion }}</p>
+    </div>
+    <div class="row">
+      <h5>COÛT ESTIMÉ</h5>
+      <hr>
+      <p> {{ project.cost }} €</p>
+    </div>
+    <div class="row">
+      <h5>DATE DE PUBLICATION</h5>
+      <hr>
+      <p> {{ project.createdAt|date('d/m/Y') }}</p>
+    </div>
+  </div>
+</div>
+<div class="mt-5 row">
+  <a class="btn btn-primary" href="{{ path('project_index') }}">Retour à la liste des projets</a>
+</div>
   {% endblock %}

@@ -28,6 +28,7 @@ class AppExtension extends AbstractExtension
             // parameter: ['is_safe' => ['html']]
             // Reference: https://twig.symfony.com/doc/2.x/advanced.html#automatic-escaping
             new TwigFilter('users', [$this, 'formatUsers'], ['pre_escape' => 'html', 'is_safe' => ['html']]),
+            new TwigFilter('avatar', [$this, 'makeAvatar'], ['pre_escape' => 'html', 'is_safe' => ['html']]),
         ];
     }
 
@@ -52,6 +53,11 @@ class AppExtension extends AbstractExtension
         }
 
         return mb_substr($chaine, 0, -2);
+    }
+
+    public function makeAvatar($user){
+        $avatar = new \LasseRafn\InitialAvatarGenerator\InitialAvatar();
+        return $avatar->name($user)->generateSvg()->toXMLString();
     }
 
     public function searchForm()

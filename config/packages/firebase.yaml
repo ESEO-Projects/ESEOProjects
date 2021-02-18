@@ -1,0 +1,4 @@
+kreait_firebase:
+  projects:
+    eseo-projets:
+      credentials: '%env(FIREBASE)%'

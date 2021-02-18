@@ -59,7 +59,7 @@
     </div>
   </div>
   <div class="col">
-    
+
     <div class="card card-outline card-indigo">
       <div class="card-header">
         <h3 class="card-title">Présentation du projet</h3>
@@ -115,7 +115,7 @@
     <div class="card-body">
       <div class="form-group">
         {{ form_label(form.description) }}
-        <small class="form-text test-muted">Quelle a été l'idée originale ? Combien de temps pour réaliser le projet ? Qu'avez-vous découvert ? Y inclure une vidéo de présentation du projet.</small>
+        <small class="form-text text-muted">Quelle a été l'idée originale ? Combien de temps pour réaliser le projet ? Qu'avez-vous découvert ? Y inclure une vidéo de présentation du projet (hébergée sur YT ou Dailymotion)</small>
         <div class="input-group">
           {{ form_widget(form.description) }}
           <div class="form-error">
@@ -123,16 +123,17 @@
           </div>
         </div>
       </div>
+      {{ form_widget(form) }}
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-success float-right">{{ button_label|default('Créer') }}</button>
     </div>
   </div>
 </div>
-{{ form_widget(form) }}
-
-<button class="btn btn-success">{{ button_label|default('Créer') }}</button>
 
 {{ form_end(form) }}
 
-{% if is_granted('ROLE_ADMIN') %}
+{% if is_granted('ROLE_ADMIN') and project.id %}
 <div class="row mt-3">
   {% include 'project/_delete_form.html.twig' %}
 </div>
