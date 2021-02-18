@@ -47,7 +47,9 @@ class FileUploader
         ]);
 
         //$uploadedFile = $bucket->upload(fopen($this->getFilePath($fileName), 'rb'), $uploadOptions);
-        $uploadedFile = $bucket->upload(fopen($file->getPathname(), 'rb'), $uploadOptions);
+        dump(file_get_contents($this->getFilePath($file)));
+        dump(base64_encode(file_get_contents($this->getFilePath($file), 'r')));
+        $uploadedFile = $bucket->upload(base64_encode(file_get_contents($this->getFilePath($file), 'r')), $uploadOptions);
 
         return $uploadedFile->name();
     }
