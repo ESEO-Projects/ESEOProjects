@@ -13,19 +13,9 @@
 $('#project_users').select2({
   theme: "bootstrap"
 });
-CKEDITOR.replace('project_description', {
-  config: {
-    toolbar: [
-  		{ name: 'clipboard', items: ['Undo', 'Redo' ] },
-  		{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat' ] },
-  		{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ] },
-  		{ name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-  		{ name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar'] }
-  	]
-  }
-});
+CKEDITOR.replace('project_description');
 var fileInputs = document.querySelectorAll('input[type="file"]').forEach((fileInput, i) => {
-  fileInput.addEventListener("change", function(){
+  fileInput.addEventListener("change", function(e){
     document.querySelector(`label[for="${fileInput.getAttribute('id')}"]`).innerHTML = fileInput.files[0].name;
   })
 })

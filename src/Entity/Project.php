@@ -74,7 +74,7 @@ class Project
     private $short_description;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="blob", nullable=true)
      */
     private $thumbnail;
 
@@ -237,12 +237,23 @@ class Project
         return $this;
     }
 
-    public function getThumbnail(): ?string
+    public function getThumbnail()
     {
         return $this->thumbnail;
     }
 
-    public function setThumbnail(?string $thumbnail): self
+    public function readThumbnail()
+    {
+        $thumbnail = "";
+        while(!feof($this->getThumbnail())){
+            $thumbnail .= fread($this->getThumbnail(), 512);
+        }
+        rewind($this->getThumbnail());
+
+        return $thumbnail;
+    }
+
+    public function setThumbnail($thumbnail): self
     {
         $this->thumbnail = $thumbnail;
 

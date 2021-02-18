@@ -5,7 +5,7 @@
     {% for project in projects %}
     <div class="col">
       <div class="card shadow-sm h-100">
-        <img style="pointer-events:none;" src="{{ project.thumbnail ? asset('elec.png') : asset('elec.png') }}" class="card-img-top img-fluid"/>
+        <img id="imageBanner" style="pointer-events:none;" src="{{ project.thumbnail ? "data:image/png;base64," ~ project.readThumbnail : asset('elec.png') }}" class="card-img-top img-fluid"/>
         <div class="card-header project-title">
           <h3 class="name">{{ project.name }}</h3>
         </div>

@@ -27,6 +27,8 @@ CKEDITOR.replace('project_description', {
 var fileInputs = document.querySelectorAll('input[type="file"]').forEach((fileInput, i) => {
   fileInput.addEventListener("change", function(){
     document.querySelector(`label[for="${fileInput.getAttribute('id')}"]`).innerHTML = fileInput.files[0].name;
+    var reader = new FileReader();
+    document.querySelector('#project_thumbnail').value = reader.readAsText(fileInput.files[0]);
   })
 })
 </script>

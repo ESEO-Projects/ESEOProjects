@@ -40,10 +40,11 @@ class ProjectController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $thumbnailFile = $form->get('thumbnail_file')->getData();
-            if($thumbnailFile) {
-              $thumbnail = $fileUploader->upload($thumbnailFile);
-              $project->setThumbnail($thumbnail);
+
+            if($thumbnailFile){
+              $project->setThumbnail(base64_encode(file_get_contents($thumbnailFile->getPathname())));
             }
+
             $project->setViews(0);
             $project->addUser($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
@@ -84,9 +85,9 @@ class ProjectController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $thumbnailFile = $form->get('thumbnail_file')->getData();
-            if($thumbnailFile) {
-              $thumbnail = $fileUploader->upload($thumbnailFile);
-              $project->setThumbnail($thumbnail);
+
+            if($thumbnailFile){
+              $project->setThumbnail(base64_encode(file_get_contents($thumbnailFile->getPathname())));
             }
             $this->getDoctrine()->getManager()->flush();
 

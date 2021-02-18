@@ -32,7 +32,7 @@ class FileUploader
             et donc qu'il soit impossible de le lire par la suite */
             $file->move($this->getTargetDirectory(), $fileName);
         }
-        catch (CannotWriteFileException $e) {
+        catch (CannotWriteFileException $e){
             throw new \Exception("Problème paramétrage serveur : impossible d'écrire le fichier.");
         }
         catch(ExtensionFileException $e){
@@ -46,7 +46,7 @@ class FileUploader
             'predefinedAcl' => 'publicRead',
         ]);
 
-        $uploadedFile = $bucket->upload(fopen($file->getFile()->getPathname(),'rb'), $uploadOptions);
+        $uploadedFile = $bucket->upload(fopen($this->getFilePath($fileName), 'rb'), $uploadOptions);
 
         return $uploadedFile->name();
     }
