@@ -76,13 +76,18 @@ class ProjectController extends AbstractController
      * @Route("/edit/{id}", name="project_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_STUDENT")
      */
-    public function edit(Request $request, Project $project): Response
+    public function edit(Request $request, Project $project, FileUploader $fileUploader): Response
     {
         $this->denyAccessUnlessGranted('PROJECT_EDIT', $project);
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $thumbnailFile = $form->get('thumbnail_file')->getData();
+            if($thumbnailFile) {
+              $thumbnail = $fileUploader->upload($thumbnailFile);
+              $project->setThumbnail($thumbnail);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('project_index');
