@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Form\ProjectType;
-use App\Service\FileUploader;
 use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +30,7 @@ class ProjectController extends AbstractController
      * @Route("/new", name="project_new", methods={"GET","POST"})
      * @IsGranted("ROLE_STUDENT")
      */
-    public function new(Request $request, FileUploader $fileUploader): Response
+    public function new(Request $request): Response
     {
         $project = new Project();
         $project->addUser($this->getUser());
@@ -77,7 +76,7 @@ class ProjectController extends AbstractController
      * @Route("/edit/{id}", name="project_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_STUDENT")
      */
-    public function edit(Request $request, Project $project, FileUploader $fileUploader): Response
+    public function edit(Request $request, Project $project): Response
     {
         $this->denyAccessUnlessGranted('PROJECT_EDIT', $project);
         $form = $this->createForm(ProjectType::class, $project);

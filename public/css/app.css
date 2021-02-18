@@ -102,32 +102,6 @@ div .card .unselectable:nth-child(odd){
 .project-show:hover { background-color:#920D4D;transform:scale(1.1);color:grey; }
 .project-show:active { background-color:#e8a200;transform:scale(1); }
 */
-/* Couleur ESEO avec effets ESEO.fr => PAS FINI
-
-.project-show{
-    font-style: normal;
-    font-size: 18px;
-    color: #FFF;
-
-    background: #5A4D9B;
-
-
-    position: relative;
-    -webkit-transition-property: color;
-    transition-property: color;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-}
-
-.project-show::before{
-  background: #31285F;
-}
-
-.project-show:hover, .project-show:active {
-    color: #FFF;
-    transition: all ease-in 0.1s;
-}
-*/
 
 .project-show{
   display:inline-block;
