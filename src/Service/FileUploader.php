@@ -46,7 +46,7 @@ class FileUploader
             'predefinedAcl' => 'publicRead',
         ]);
 
-        $uploadedFile = $bucket->upload(fopen($file->getFile()->getPathname(), 'rb')), $uploadOptions);
+        $uploadedFile = $bucket->upload(fopen($file->getFile()->getPathname(),'rb'), $uploadOptions);
 
         return $uploadedFile->name();
     }
