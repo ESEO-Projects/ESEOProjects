@@ -28,8 +28,9 @@ class FileUploader
         $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
 
         try {
+            /* Sur Heroku il semble que le fichier ne soit pas correctement déplacé,
+            et donc qu'il soit impossible de le lire par la suite */
             $file->move($this->getTargetDirectory(), $fileName);
-
         }
         catch (CannotWriteFileException $e) {
             throw new \Exception("Problème paramétrage serveur : impossible d'écrire le fichier.");
@@ -45,7 +46,8 @@ class FileUploader
             'predefinedAcl' => 'publicRead',
         ]);
 
-        $uploadedFile = $bucket->upload(fopen($this->getFilePath($fileName), 'rb'), $uploadOptions);
+        //$uploadedFile = $bucket->upload(fopen($this->getFilePath($fileName), 'rb'), $uploadOptions);
+        $uploadedFile = $bucket->upload(fopen($file->getPathname(), 'rb'), $uploadOptions);
 
         return $uploadedFile->name();
     }
