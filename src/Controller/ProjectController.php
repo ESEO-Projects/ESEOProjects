@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Project;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
+use App\Entity\IpRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,10 +63,21 @@ class ProjectController extends AbstractController
     /**
      * @Route("/show/{id}", name="project_show", methods={"GET"})
      */
-    public function show(Project $project): Response
+    public function show(Project $project, Request $request): Response
     {
-        // A chaque vue d'un projet, on incrémente de 1 dans la base de données le nombre de vues:
-        $project->setViews($project->getViews()+1);
+        // A chaque vue d'un projet, on incrémente de 1 dans la base de données le nombre de vues après vérification:
+        $lastRequest = $this->getDoctrine()->getRepository(IpRequest::class)->getLastIpByPath($request->getPathInfo(), $request->getClientIp());
+        $ipRequest = new IpRequest();
+        $ipRequest->setTimestamp(new \Datetime());
+        $ipRequest->setIp($request->getClientIp());
+        $ipRequest->setPath($request->getPathInfo());
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($ipRequest);
+        $entityManager->flush();
+        if($lastRequest != null && ($lastRequest->getTimestamp()->modify('+1 minute') < new \DateTime())){
+          $project->setViews($project->getViews()+1);
+        }
+
         $this->getDoctrine()->getManager()->flush(); // On update les données.
         return $this->render('project/show.html.twig', [
             'project' => $project,
