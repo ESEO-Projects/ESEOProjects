@@ -74,7 +74,7 @@ class ProjectController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($ipRequest);
         $entityManager->flush();
-        if($lastRequest != null && ($lastRequest->getTimestamp()->modify('+1 minute') < new \DateTime())){
+        if($lastRequest != null && ($lastRequest->getTimestamp()->modify('+5 minutes') < new \DateTime())){
           $project->setViews($project->getViews()+1);
         }
 
